@@ -22,7 +22,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.0 # Ruby version
-          bundler-cache: true # Caches dependencies for faster builds
+          bundler-cache: false # Caches dependencies for faster builds
 
       # Install dependencies
       - name: Install Gems
