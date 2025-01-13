@@ -44,6 +44,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'dotenv'
   gem 'rubocop'
+  gem 'rubocop-discourse', require: false
 end
 
 group :test do
