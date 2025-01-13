@@ -67,7 +67,7 @@ class RequestManager
   # @param retries [Integer] The current retry attempt
   # @return [Float] The backoff time in seconds
   def self.retry_backoff(retries)
-    (2**retries) + rand(0..1) # Exponential backoff with jitter
+    retries + rand(0..1) # Exponential backoff with jitter
   end
 
   # Handles HTTP and other errors

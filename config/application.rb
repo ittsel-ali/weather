@@ -31,8 +31,7 @@ module Weather
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    config.middleware.use Rack::Static, urls: ["/ui"], root: "public"
-
+    config.middleware.use Rack::Static, urls: ['/ui'], root: 'public'
 
     # Added cors for assignment purpose only
     # In real world application, there should be token-based authentication

@@ -5,8 +5,10 @@ module Geocoder
   class AddressLookupManager
     CACHE_KEY_PREFIX = 'Geocoding'
 
+    attr_accessor :cache_manager, :geocoding_service
+
     def initialize
-      @geocoding_service = Integrations::Geocoder::OpencageGeocodingService.new
+      @geocoding_service = Integrations::Geocoder::OpencageGeocodingService.new(RequestManager)
       @cache_manager = CacheManager.new(CACHE_POOL, key_prefix: CACHE_KEY_PREFIX)
     end
 
@@ -19,10 +21,10 @@ module Geocoder
     def lookup_address(query, options = {})
       validate_query(query)
 
-      cache_key = @cache_manager.generate_key("#{query}-#{options.sort.to_h}")
+      cache_key = cache_manager.generate_key("#{query}-#{options.sort.to_h}")
 
-      @cache_manager.fetch(cache_key) do
-        @geocoding_service.fetch_geocoding_data(query, options)
+      cache_manager.fetch(cache_key) do
+        geocoding_service.fetch_geocoding_data(query, options)
       end
     rescue StandardError => e
       handle_error(e, query)

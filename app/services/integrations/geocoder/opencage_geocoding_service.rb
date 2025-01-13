@@ -13,9 +13,9 @@ module Integrations
       # Initializes the service with an API key
       #
       # @param api_key [String] The API key for OpenCage Geocoder API
-      def initialize(api_key = ENV['OPENCAGE_API_KEY'])
+      def initialize(request_manager, api_key = ENV['OPENCAGE_API_KEY'])
         @api_key = api_key
-        @request_manager = RequestManager
+        @request_manager = request_manager
       end
 
       # Fetches geocoding data for a given query

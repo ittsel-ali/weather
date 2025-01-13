@@ -43,10 +43,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
   gem 'dotenv'
+  gem 'rack-cors' # only for assignment, will not be used in real world application
   gem 'rubocop'
   gem 'rubocop-discourse', require: false
-  gem 'rack-cors' # only for assignment, will not be used in real world application
-
 end
 
 group :test do

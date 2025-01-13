@@ -1,4 +1,4 @@
-name: RuboCop Linting
+name: Unit tests (minitest)
 
 on:
   push:
@@ -30,4 +30,4 @@ jobs:
 
       # Run RuboCop
       - name: Run RuboCop
-        run: bundle exec rubocop
+        run: bundle exec rails test
