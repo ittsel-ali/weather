@@ -14,7 +14,7 @@ class AddressSerializer
       {
         full_address: address[:full_address],
         lat: address[:lat],
-        lng: address[:lng]
+        lon: address[:lon]
       }
     end
   end

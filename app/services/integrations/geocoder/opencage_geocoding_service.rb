@@ -88,7 +88,7 @@ module Integrations
         {
           full_address: result['formatted'],
           lat: location['lat'],
-          lng: location['lng']
+          lon: location['lng']
         }
       end
 

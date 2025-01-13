@@ -45,6 +45,8 @@ group :development, :test do
   gem 'dotenv'
   gem 'rubocop'
   gem 'rubocop-discourse', require: false
+  gem 'rack-cors' # only for assignment, will not be used in real world application
+
 end
 
 group :test do
