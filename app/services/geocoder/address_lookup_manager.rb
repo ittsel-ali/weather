@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Geocoder
+  # Manages address lookups with caching, integrating with a geocoding service to fetch results efficiently.
   class AddressLookupManager
-    CACHE_KEY_PREFIX = "Geocoding"
+    CACHE_KEY_PREFIX = 'Geocoding'
 
     def initialize
       @geocoding_service = Integrations::Geocoder::OpencageGeocodingService.new
@@ -11,7 +14,8 @@ module Geocoder
     #
     # @param query [String] The address or place to look up
     # @param options [Hash] Additional query parameters (e.g., language, countrycode)
-    # @return [Array<Hash>] List of geocoding results with addresses and coordinates, or an empty array in case of errors
+    # @return [Array<Hash>] List of geocoding results with addresses and coordinates
+    # @return [Array<Hash>] Empty array in case of errors
     def lookup_address(query, options = {})
       validate_query(query)
 

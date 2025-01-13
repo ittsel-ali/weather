@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 # app/services/pool_cache_manager.rb
 require 'digest'
 require 'json'
 require 'connection_pool'
 
+# Manages caching operations using a connection pool
+# Includes methods to fetch, store, and delete cached data with customizable expiration and key prefixing.
 class CacheManager
   DEFAULT_EXPIRATION = 24 * 60 * 60 # Default expiration time in seconds (24 hours)
 
@@ -42,14 +46,6 @@ class CacheManager
   # @param cache [Object] The cache backend connection
   def store(key, value, cache)
     cache.set(key, value.to_json, ex: @expiration)
-  end
-
-  # Deletes a cache entry
-  #
-  # @param key [String] The cache key (without prefix)
-  def delete(key)
-    full_key = build_key(key)
-    @cache_pool.with { |cache| cache.del(full_key) }
   end
 
   # Generates a unique cache key using SHA256

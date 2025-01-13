@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/concerns/response_helper.rb
 module ResponseHelper
   extend ActiveSupport::Concern

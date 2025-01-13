@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 module Integrations
   module Geocoder
+    # Integrates with the OpenCage Geocoding API to fetch address and coordinate data
+    # With robust error handling and input validation.
     class OpencageGeocodingService
-      GEOCODE_DATA_LIMIT = 5.freeze # Restricts the count of query results
-      BASE_URL = 'https://api.opencagedata.com/geocode/v1/json'.freeze
+      GEOCODE_DATA_LIMIT = 5 # Restricts the count of query results
+      BASE_URL = 'https://api.opencagedata.com/geocode/v1/json'
 
-      attr_accessor :api_key, :request_manager 
-      
+      attr_accessor :api_key, :request_manager
+
       # Initializes the service with an API key
       #
       # @param api_key [String] The API key for OpenCage Geocoder API

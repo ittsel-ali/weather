@@ -1,7 +1,7 @@
-# app/services/request_manager.rb
-require 'rest-client'
-require 'json'
+# frozen_string_literal: true
 
+# app/services/request_manager.rb
+# Handles HTTP GET requests with retry logic, error handling, exponential backoff, and JSON response parsing.
 class RequestManager
   MAX_RETRIES = 3 # Maximum number of retries for transient errors
 
@@ -18,28 +18,29 @@ class RequestManager
     end
   end
 
-  private
-
   # Executes the given block with retry logic for transient errors
-  #
-  # @yield The block containing the code to execute with retries
-  # @return [Object] The result of the block if successful
-  # @raise [Exception] The last exception if all retries fail
   def self.with_retries
     retries = 0
-
     begin
-      yield # Execute the block
+      yield
     rescue RestClient::ExceptionWithResponse => e
-      retries += 1
-      if retries <= MAX_RETRIES && retryable_error?(e.response)
-        Rails.logger.warn("Retrying request... Attempt #{retries} of #{MAX_RETRIES}")
-        sleep(retry_backoff(retries)) # Exponential backoff
-        retry
-      end
-      handle_error(e)
+      handle_retry(e, retries += 1) ? retry : handle_error(e)
     rescue StandardError => e
       handle_error(e)
+    end
+  end
+
+  # Handles the retry logic, including backoff and retry determination
+  #
+  # @param error [RestClient::ExceptionWithResponse] The exception raised
+  # @param retries [Integer] The current retry count
+  # @return [Boolean] True if the request should be retried, false otherwise
+  def self.handle_retry(error, retries)
+    if retries <= MAX_RETRIES && retryable_error?(error.response)
+      sleep(retry_backoff(retries))
+      true
+    else
+      false
     end
   end
 

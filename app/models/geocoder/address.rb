@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 # app/models/geocoder/address_autocomplete_query.rb
 module Geocoder
+  # Represents an address autocomplete query with validation to ensure a query string is provided.
   class Address
     include ActiveModel::Model
 

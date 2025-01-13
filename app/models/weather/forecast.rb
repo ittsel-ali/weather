@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 # app/models/weather/forecast_query.rb
 module Weather
+  # Represents a weather forecast query with latitude and longitude validation, ensuring valid geospatial inputs.
   class Forecast
     include ActiveModel::Model
 

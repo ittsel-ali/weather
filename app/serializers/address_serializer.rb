@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/serializers/address_serializer.rb
 class AddressSerializer
   def initialize(addresses)

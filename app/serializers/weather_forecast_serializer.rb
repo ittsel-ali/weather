@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/serializers/weather_forecast_serializer.rb
 class WeatherForecastSerializer
   def initialize(data)

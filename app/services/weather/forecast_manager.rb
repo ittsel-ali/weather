@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 # app/services/weather/forecast_manager.rb
 module Weather
+  # Manages weather data retrieval with caching and error handling, using an external weather service.
   class ForecastManager
-    CACHE_KEY_PREFIX = "WeatherForecast"
+    CACHE_KEY_PREFIX = 'WeatherForecast'
     CACHE_EXPIRATION = 30 * 60 # Cache expiry to 30 minutes
-    
+
     attr_accessor :cache_manager, :weather_service
 
     # Initializes the WeatherManager with a CacheManager and a WeatherService
@@ -15,13 +18,13 @@ module Weather
         CACHE_POOL,
         key_prefix: CACHE_KEY_PREFIX,
         expiration: CACHE_EXPIRATION
-        )
+      )
 
       @weather_service = Integrations::Weather::OpenMeteoWeatherService.new(
-        lat, 
+        lat,
         lon,
         RequestManager
-        )
+      )
     end
 
     # Fetches weather data with caching
