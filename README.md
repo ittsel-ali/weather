@@ -1,6 +1,9 @@
 # Weather Forecast
 
 This project is a **Weather Forecast Application** that provides real-time weather updates and extended forecasts for any location. It also includes an address lookup feature for finding locations based on partial address inputs.
+#### API DOC: https://github.com/ittsel-ali/weather/blob/main/docs/api_readme.md
+#### Demo: [Watch the Demo](https://www.dropbox.com/scl/fi/ehqea5t5rvzaqizfhqtbw/demo.mp4?rlkey=tacmr118hrd5gb491e1bex1gq&st=xo2cb808&dl=0)
+
 
 ---
 
@@ -11,7 +14,7 @@ This project is a **Weather Forecast Application** that provides real-time weath
   - Temperature
   - Wind speed
   - Weather condition (e.g., Clear, Rainy)
-- Provides extended forecasts for multiple days.
+- Provides extended forecasts for 7 days.
 
 ### 2. **Address Lookup**
 - Search for locations using partial or full address inputs.
@@ -30,31 +33,26 @@ This project is a **Weather Forecast Application** that provides real-time weath
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/weather-forecast.git
-   cd weather-forecast
-```
+   git clone git@github.com:ittsel-ali/weather.git
+   cd weather
 
 2. Install backend dependencies:
    ```bash
-	bundle install
-```
+    bundle install
 
 3. Install frontend dependencies:
    ```bash
-	cd app/ui
-	npm install
-```
+   cd app/ui
+   npm install
 
 4. Start the Vite server for the React frontend:
    ```bash
    cd app/ui
    npm run dev
-```
 
 5. Open the application in your browser at:
    ```bash
    http://localhost:3000
-```
 
 ## Environment Configuration
 
