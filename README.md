@@ -1,24 +1,77 @@
-# README
+# Weather Forecast
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a **Weather Forecast Application** that provides real-time weather updates and extended forecasts for any location. It also includes an address lookup feature for finding locations based on partial address inputs.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## Features
 
-* System dependencies
+### 1. **Weather Forecast**
+- Displays current weather conditions:
+  - Temperature
+  - Wind speed
+  - Weather condition (e.g., Clear, Rainy)
+- Provides extended forecasts for multiple days.
 
-* Configuration
+### 2. **Address Lookup**
+- Search for locations using partial or full address inputs.
+- Returns suggestions with full address and geographic coordinates.
 
-* Database creation
+---
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+### Prerequisites
+- **Ruby** (= 3.3.0)
+- **Rails** (= 7.1.5, API-only mode)
+- **Node.js** (>= 22.x)
+- **Vite** (for React integration)
 
-* Services (job queues, cache servers, search engines, etc.)
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/weather-forecast.git
+   cd weather-forecast
+```
 
-* Deployment instructions
+2. Install backend dependencies:
+   ```bash
+	bundle install
+```
 
-* ...
+3. Install frontend dependencies:
+   ```bash
+	cd app/ui
+	npm install
+```
+
+4. Start the Vite server for the React frontend:
+   ```bash
+   cd app/ui
+   npm run dev
+```
+
+5. Open the application in your browser at:
+   ```bash
+   http://localhost:3000
+```
+
+## Environment Configuration
+
+Use `.env-example` files for setup:
+
+- **Rails API**: Copy `.env-example` in the root folder to `.env` and update values.
+- **React UI**: Copy `.env-example` in `app/ui` to `.env` and update values.
+
+
+## Continuous Integration (CI)
+
+This project includes **GitHub Actions** for automated Continuous Integration checks:
+
+### CI Workflows
+1. **Linting**:
+   - Uses **RuboCop** to enforce Ruby style guides and best practices.
+   - Automatically runs on every push and pull request to the `main` branch.
+
+2. **Testing**:
+   - Executes all **Rails tests** in the test suite to ensure functionality.
