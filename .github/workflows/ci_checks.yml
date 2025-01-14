@@ -37,6 +37,17 @@ jobs:
     name: Rails Tests
     runs-on: ubuntu-latest
 
+    services:
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 3
+
     steps:
       # Checkout the code from the repository
       - name: Checkout Code
@@ -53,8 +64,17 @@ jobs:
       - name: Install Gems
         run: bundle install
 
+      # Wait for Redis to be ready
+      - name: Wait for Redis
+        run: |
+          until nc -z localhost 6379; do
+            echo "Waiting for Redis..."
+            sleep 1
+          done
+
       # Run Rails Tests
       - name: Run Rails Tests
         env:
           RAILS_ENV: test
+          REDIS_URL: redis://127.0.0.1:6379/1
         run: bundle exec rails test

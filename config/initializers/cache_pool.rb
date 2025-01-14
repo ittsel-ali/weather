@@ -14,5 +14,5 @@ CACHE_POOL = ConnectionPool.new(size: 10, timeout: 5) do
   # Creates a new Redis client instance.
   # - `url: ENV['REDIS_URL']`: Reads the Redis server URL from the `REDIS_URL` environment variable.
   # - `redis://localhost:6379/0`: Uses the default Redis server URL if `REDIS_URL` is not set.
-  Redis.new(url: ENV['REDIS_URL'] || 'redis://localhost:6379/0')
+  Redis.new(url: ENV['REDIS_URL'] || 'redis://localhost:6379/1')
 end

@@ -8,22 +8,17 @@ module Geocoder
       @valid_params = { query: 'Mountain View' }
       @invalid_params = { query: '' }
 
-      @mock_results = [
-        { full_address: 'Mountain View, CA, USA', lat: 37.3860517, lng: -122.0838511 },
-        { full_address: 'Mountain Home, ID, USA', lat: 43.132576, lng: -115.691198 }
-      ]
+      # Call mock of OpenCage geocoder API service
+      # Should be a seperate file under mocks/ folder
+      mock_open_cage_geocoder_api
 
       @serialized_results = [
-        { full_address: 'Mountain View, CA, USA', lat: 37.3860517, lng: -122.0838511 },
-        { full_address: 'Mountain Home, ID, USA', lat: 43.132576, lng: -115.691198 }
+        { full_address: 'Mountain View, CA, USA', lat: 37.3860517, lon: -122.0838511 },
+        { full_address: 'Mountain Home, ID, USA', lat: 43.132576, lon: -115.691198 }
       ]
     end
 
     test 'should return address suggestions with valid parameters' do
-      # Stub the AddressLookupManager and AddressSerializer
-      ::Geocoder::AddressLookupManager.any_instance.stubs(:lookup_address).returns(@mock_results)
-      AddressSerializer.any_instance.stubs(:serialize).returns(@serialized_results)
-
       get '/geocoder/address_lookup', params: @valid_params
 
       assert_response :success

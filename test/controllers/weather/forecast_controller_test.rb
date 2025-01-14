@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
+require 'webmock/minitest'
 
 module Weather
   class ForecastControllerTest < ActionDispatch::IntegrationTest
@@ -8,17 +9,9 @@ module Weather
       @valid_params = { lat: '37.7749', lon: '-122.4194' }
       @invalid_params = { lat: '', lon: '' }
 
-      @raw_forecast_data = {
-        current_weather: {
-          temperature: 15.2,
-          wind_speed: 5.4,
-          condition: 'Partly Cloudy'
-        },
-        daily_forecast: [
-          { date: '2025-01-10', max_temperature: 16.0, min_temperature: 10.0, condition: 'Clear' },
-          { date: '2025-01-11', max_temperature: 18.0, min_temperature: 11.0, condition: 'Rain' }
-        ]
-      }
+      # Call the mock setup for Open Meteo API service
+      # Should be a seperate file under mocks/ folder
+      mock_open_meteo_api
 
       @serialized_forecast = {
         current_weather: {
@@ -34,9 +27,6 @@ module Weather
     end
 
     test 'should return weather forecast with valid parameters' do
-      ::Weather::ForecastManager.any_instance.stubs(:lookup_weather_forecast).returns(@raw_forecast_data)
-      WeatherForecastSerializer.any_instance.stubs(:serialize).returns(@serialized_forecast)
-
       get '/weather/forecast', params: @valid_params
 
       assert_response :success
